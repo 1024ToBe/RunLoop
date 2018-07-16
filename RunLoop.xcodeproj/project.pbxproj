@@ -39,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0455754820D2471C002ACCDE /* UtilsMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
+		0455754920D2471C002ACCDE /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		04747BDB20AFBE620040A962 /* ZWWTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWTableViewController.h; sourceTree = "<group>"; };
 		04747BDC20AFBE620040A962 /* ZWWTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWTableViewController.m; sourceTree = "<group>"; };
 		04747BDE20AFBFAB0040A962 /* ZWWTableViewController+method.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZWWTableViewController+method.h"; sourceTree = "<group>"; };
@@ -113,6 +115,8 @@
 		04CAE8F120AEC4C500B7150A /* RunLoop */ = {
 			isa = PBXGroup;
 			children = (
+				0455754920D2471C002ACCDE /* PrefixHeader.pch */,
+				0455754820D2471C002ACCDE /* UtilsMacros.h */,
 				04CAE8F220AEC4C500B7150A /* AppDelegate.h */,
 				04CAE8F320AEC4C500B7150A /* AppDelegate.m */,
 				04CAE92A20AED27E00B7150A /* ZWWTimerViewController.h */,
@@ -450,14 +454,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 84479DR68T;
+				GCC_PREFIX_HEADER = $SRCROOT/RunLoop/PrefixHeader.pch;
 				INFOPLIST_FILE = RunLoop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zoe.RunLoop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsh.ALTT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3b279c94-0f1c-4a66-9923-f8186afe6a80";
+				PROVISIONING_PROFILE_SPECIFIER = "dev_profile(0607)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -466,14 +474,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 84479DR68T;
+				GCC_PREFIX_HEADER = $SRCROOT/RunLoop/PrefixHeader.pch;
 				INFOPLIST_FILE = RunLoop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zoe.RunLoop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsh.ALTT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7872e197-bbdb-4f4b-a15a-38dd05819e1f";
+				PROVISIONING_PROFILE_SPECIFIER = "dis_profile(0607)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
