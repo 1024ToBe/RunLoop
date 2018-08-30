@@ -10,6 +10,8 @@
 #import "ZWWTimerViewController.h"
 #import "ZWWObserverViewController.h"
 #import "ZWWTableViewController+method.h"
+#import "ZWWUseRunloopViewController.h"
+
 @interface ZWWTableViewController ()
 
 @property (strong, nonatomic) NSArray *titleArr;
@@ -28,8 +30,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //系统总共有五个runloop，每个runloop有source0：处理用户交互事件，source1：系统响应事件，obsever:监听 timer：定时器事件；
-    _titleArr = @[@"NSTimer创建",@"obsver",@"runLoop实践0",@"runLoop实践0-1"];
+    //系统总共有五个mode的runloop，每个runloop有source0：处理用户交互事件，source1：系统响应事件，obsever:监听 timer：定时器事件；
+    _titleArr = @[@"NSTimer创建",@"obsver",@"runLoop使用案例"];
     _vcArr = @[@"ZWWTimerViewController",@"ZWWObserverViewController",@""];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"basicCell"];
  
@@ -69,13 +71,11 @@
             break;
         }
         case 2:{//runloop实践0
-            [self testUseRunloop];
+            ZWWUseRunloopViewController *userRunloopVC = [[ZWWUseRunloopViewController alloc]init];
+            [self.navigationController pushViewController:userRunloopVC animated:YES];
             break;
         }
-        case 3:{//runloop实践0-1
-            [self testThreanCanUse];
-            break;
-        }
+        
         default:
             break;
     }

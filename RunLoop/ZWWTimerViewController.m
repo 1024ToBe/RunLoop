@@ -29,17 +29,21 @@
 - (IBAction)createTimer1:(id)sender {
     _count = 0;
     //方法1：系统自动将timer添加到当前的Runloop中
-    //1.创建Timer 2.自动添加到当前Runloop中
+    //1.创建Timer
+    //2.自动添加到当前Runloop中,默认mode为kCFRunLoopDefaultMode
+    //mode 为kCFRunLoopDefaultMode导致的问题：当TextView滑动时，会停止计时，滑动结束后继续计时。
+   
     _timer1 = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handle:) userInfo:_timer1 repeats:YES];
     
 }
 - (IBAction)createTimer0201:(id)sender {
     _count = 0;
-    //方法2.1：需要手动将timer添加到指定mode的Runloop中
+    //方法2.1需要手动将timer添加到指定mode的Runloop中
     //1.创建Timer
     _timer2 = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(handle:) userInfo:_timer2 repeats:YES];
     //2.1将Timer手动添加到当前Runloop中(默认mode)
     //mode 为NSDefaultRunLoopMode导致的问题：当TextView滑动时，会停止计时，滑动结束后继续计时。
+     //原因：当滑动Scrollview时。mode改变成为UITrackingRunLoopMode，而timer添加到了默认模式下 NSDefaultRunLoopMode
     [[NSRunLoop currentRunLoop]addTimer:_timer2 forMode:NSDefaultRunLoopMode];
 }
 
@@ -63,7 +67,7 @@
     
 }
 - (IBAction)createTimerUseGCD:(id)sender {
-    //方法3：方法1，2默认放到主线程中，有可能造成计时不是很准确：Runloop处理完Timer事件处理source0，若主线程处理source0或source1等事件导致主线程阻塞时，timer不会及时走就会导致runloop中timer计时不准确。
+    //方法3：方法1，2默认将timer放到主线程中，有可能造成计时不是很准确：Runloop处理完Timer事件处理source0，若主线程处理source0或source1等事件导致主线程阻塞时，timer不会及时走就会导致runloop中timer计时不准确。
     //解决方法1：可以重新创建一个子线程，将timer添加到子线程中。成本是：需要开辟一个新的线程
     //解决方法2：GCD 方法创建Timer。实际只要提到Runloop就会阻塞主线程，GCD 方法创建Timer与Runloop无关，不会导致Runloop模式切换时，计时出现问题
     //打印方法：直接打出dispatch，选择GCD Timer回车即可
@@ -92,7 +96,7 @@
 - (void)handle:(id)timer{
     _count++;
     NSLog(@"----run--- count==%ld,当前runloopMode==%@",_count,[[NSRunLoop currentRunLoop]currentMode]);
-    if (_count==5) {
+    if (_count==10) {
         
         [timer invalidate];
         timer = nil;

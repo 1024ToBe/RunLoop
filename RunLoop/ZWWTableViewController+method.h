@@ -10,7 +10,4 @@
 
 @interface ZWWTableViewController (method)
 
-
-- (void)testUseRunloop;
-- (void)testThreanCanUse;
 @end

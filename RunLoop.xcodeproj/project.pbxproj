@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0436B0B52137DEE700552168 /* ZWWUseRunloopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436B0B32137DEE700552168 /* ZWWUseRunloopViewController.m */; };
+		0436B0B62137DEE700552168 /* ZWWUseRunloopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0436B0B42137DEE700552168 /* ZWWUseRunloopViewController.xib */; };
 		04747BDD20AFBE620040A962 /* ZWWTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04747BDC20AFBE620040A962 /* ZWWTableViewController.m */; };
 		04747BE020AFBFAB0040A962 /* ZWWTableViewController+method.m in Sources */ = {isa = PBXBuildFile; fileRef = 04747BDF20AFBFAB0040A962 /* ZWWTableViewController+method.m */; };
 		04747BE320AFC1080040A962 /* ZWWObserverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04747BE220AFC1080040A962 /* ZWWObserverViewController.m */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0436B0B22137DEE700552168 /* ZWWUseRunloopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWUseRunloopViewController.h; sourceTree = "<group>"; };
+		0436B0B32137DEE700552168 /* ZWWUseRunloopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWUseRunloopViewController.m; sourceTree = "<group>"; };
+		0436B0B42137DEE700552168 /* ZWWUseRunloopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZWWUseRunloopViewController.xib; sourceTree = "<group>"; };
 		0455754820D2471C002ACCDE /* UtilsMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
 		0455754920D2471C002ACCDE /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		04747BDB20AFBE620040A962 /* ZWWTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWTableViewController.h; sourceTree = "<group>"; };
@@ -124,6 +129,9 @@
 				04CAE92C20AED27E00B7150A /* ZWWTimerViewController.xib */,
 				04747BE120AFC1080040A962 /* ZWWObserverViewController.h */,
 				04747BE220AFC1080040A962 /* ZWWObserverViewController.m */,
+				0436B0B22137DEE700552168 /* ZWWUseRunloopViewController.h */,
+				0436B0B32137DEE700552168 /* ZWWUseRunloopViewController.m */,
+				0436B0B42137DEE700552168 /* ZWWUseRunloopViewController.xib */,
 				04747BDB20AFBE620040A962 /* ZWWTableViewController.h */,
 				04747BDC20AFBE620040A962 /* ZWWTableViewController.m */,
 				04747BDE20AFBFAB0040A962 /* ZWWTableViewController+method.h */,
@@ -263,6 +271,7 @@
 				04CAE8FF20AEC4C900B7150A /* LaunchScreen.storyboard in Resources */,
 				04CAE8FC20AEC4C900B7150A /* Assets.xcassets in Resources */,
 				04CAE92E20AED27E00B7150A /* ZWWTimerViewController.xib in Resources */,
+				0436B0B62137DEE700552168 /* ZWWUseRunloopViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +299,7 @@
 				04747BE620AFCD240040A962 /* ZWWThread.m in Sources */,
 				04CAE90220AEC4C900B7150A /* main.m in Sources */,
 				04747BE320AFC1080040A962 /* ZWWObserverViewController.m in Sources */,
+				0436B0B52137DEE700552168 /* ZWWUseRunloopViewController.m in Sources */,
 				04CAE92D20AED27E00B7150A /* ZWWTimerViewController.m in Sources */,
 				04747BDD20AFBE620040A962 /* ZWWTableViewController.m in Sources */,
 				04CAE8F420AEC4C500B7150A /* AppDelegate.m in Sources */,

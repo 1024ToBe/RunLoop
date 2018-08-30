@@ -12,8 +12,10 @@
 int main(int argc, char * argv[]) {
     @autoreleasepool {
 //        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        
+        // 情况1
         //#【验证 Runloop 的开启】
-        //#【验证结果】：只会打印开始，并不会打印结束。
+        //#【验证结果】：只会打印开始，并不会打印结束,程序也并没有运行后直接退出。
         //#【Runloop 的退出条件】。
         //App退出；线程关闭；设置最大时间到期；
         
@@ -22,5 +24,12 @@ int main(int argc, char * argv[]) {
         int number = UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
         ZWWLog(@"结束");
         return number;
+        
+        // 情况2：下面这种情况就会打印开始，结束。然后程序启动后立马退出
+//        ZWWLog(@"开始");
+//        ZWWLog(@"结束");
+//        return number;
+        return 0;
+        
     }
 }
