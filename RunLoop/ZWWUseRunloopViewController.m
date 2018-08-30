@@ -90,7 +90,7 @@
     BOOL isButtonOn  = [switchButton isOn];
     if (isButtonOn) {
         self.isCancelled = YES;
-    }else {
+    } else {
         self.isCancelled = NO;
     }
     
