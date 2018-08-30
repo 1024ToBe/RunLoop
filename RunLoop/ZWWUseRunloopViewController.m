@@ -12,6 +12,7 @@
 
 @interface ZWWUseRunloopViewController ()
 
+@property (nonatomic, assign) BOOL  isCancelled;
 @property (nonatomic, strong) ZWWThread *thread;
 
 @end
@@ -80,6 +81,82 @@
     
     //如果runloop循环开启成功，end将不执行，代表这个子线程常驻成功
     NSLog(@"%@ end",[NSThread currentThread]);
+}
+
+//使用场景1
+//维护线程的生命周期，让线程不自动退出，isCancelled为Yes时退出。
+- (IBAction)cancelAction:(id)sender {
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isButtonOn  = [switchButton isOn];
+    if (isButtonOn) {
+        self.isCancelled = YES;
+    }else {
+        self.isCancelled = NO;
+    }
+    
+    ZWWThread *thread = [[ZWWThread alloc]initWithTarget:self selector:@selector(runLoopThread1) object:nil];
+    [thread start];
+}
+
+- (void)runLoopThread1{
+    NSLog(@"%@ start",[NSThread currentThread]);
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+    while (!self.isCancelled) {
+        @autoreleasepool {
+            [runLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:3]];
+        }
+    }
+    
+    NSLog(@"%@ end",[NSThread currentThread]);
+}
+
+
+//使用场景2
+//创建常驻线程，执行一些会一直存在的任务。该线程的生命周期跟App相同
+- (IBAction)useRunloop2:(id)sender {
+    
+    ZWWThread *thread = [[ZWWThread alloc]initWithTarget:self selector:@selector(runLoopThread2) object:nil];
+    [thread start];
+}
+
+
+- (void)runLoopThread2{
+    NSLog(@"%@ start",[NSThread currentThread]);
+    @autoreleasepool {
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        [runLoop run];
+    }
+     NSLog(@"%@ end",[NSThread currentThread]);
+}
+
+//使用场景3
+//在一定时间内监听某种事件，或执行某种任务的线程
+//如下代码，在15秒内，每隔5s执行onTimerFired:。这种场景一般会出现在，如我需要在应用启动之后，在一定时间内持续更新某项数据。
+- (IBAction)useRunloop3:(id)sender {
+    
+    ZWWThread *thread = [[ZWWThread alloc]initWithTarget:self selector:@selector(runLoopThread3) object:nil];
+    [thread start];
+}
+
+- (void)runLoopThread3{
+    NSLog(@"%@ start",[NSThread currentThread]);
+    @autoreleasepool {
+        NSRunLoop * runLoop = [NSRunLoop currentRunLoop];
+        NSTimer * udpateTimer = [NSTimer timerWithTimeInterval:5
+                                                        target:self
+                                                      selector:@selector(onTimerFired:)
+                                                      userInfo:nil
+                                                       repeats:YES];
+        [runLoop addTimer:udpateTimer forMode:NSRunLoopCommonModes];
+        [runLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:3*5]];
+     }
+    NSLog(@"%@ end",[NSThread currentThread]);
+}
+
+- (void)onTimerFired:(NSTimer *)timer{
+     NSLog(@"%@ start",[NSThread currentThread]);
 }
 
 - (void)didReceiveMemoryWarning {
