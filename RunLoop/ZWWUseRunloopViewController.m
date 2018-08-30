@@ -64,27 +64,21 @@
 
 - (void)runThread{
     NSLog(@"%@ start",[NSThread currentThread]);
-    
-    //1、尝试用runloop保留住thread
-    //子线程不同于mainthread，runloop是默认不开启的，需要手动开启
-    //runloop 必须有timer，source等之一运行，否则runloop会自动退出===重点：怎么让线程或者runloop常驻
-    //    [[NSRunLoop currentRunLoop]addPort:[NSPort port] forMode:NSDefaultRunLoopMode];  //这句话注释掉之后runloop是开启失败的
-    //    [[NSRunLoop currentRunLoop]run];
-    
-    //如果runloop循环开启成功，end将不执行
-    NSLog(@"%@ end",[NSThread currentThread]);
 }
 
 - (void)runLoopThread{
     NSLog(@"%@ start",[NSThread currentThread]);
     
 //    尝试用runloop保留住thread
-//    子线程不同于mainthread，runloop是默认不开启的，需要手动开启
-//    runloop 必须有timer，source等之一运行，否则runloop会自动退出===重点：怎么让线程或者runloop常驻
-    [[NSRunLoop currentRunLoop]addPort:[NSPort port] forMode:NSDefaultRunLoopMode];  //这句话注释掉之后runloop是开启失败的
+//    子线程不同于mainthread，runloop是默认不开启的，需要手动开启，但仅仅开启并不能让线程常驻--必须得有timer，source等在运行
+//    runloop 必须有timer，source()等之一运行，否则runloop会自动退出===重点：如何开启常驻线程
+    
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runThread) userInfo:nil repeats:YES];
+//    [[NSRunLoop currentRunLoop]addTimer:timer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop]addPort:[NSPort port] forMode:NSDefaultRunLoopMode];  //这句话注释掉之后runloop是开启失败的,NSPort可以看做是source的一种
     [[NSRunLoop currentRunLoop]run];
     
-    //如果runloop循环开启成功，end将不执行
+    //如果runloop循环开启成功，end将不执行，代表这个子线程常驻成功
     NSLog(@"%@ end",[NSThread currentThread]);
 }
 
