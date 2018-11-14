@@ -28,3 +28,7 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+## commitlint
+node_modules/
+package-lock.json
